@@ -7,10 +7,10 @@ import PersonIcon from "@mui/icons-material/Person";
 const Special = () => {
   return (
     <>
-      <div className="flex md:flex-row sm:flex-col">
+      <div className="md:flex justify-center items-center grid sm:grid-cols-2 md:grid-rows-4">
         <div className="p-7 text-center ">
           <AccessTimeIcon className="text-7xl" />
-          <p className="uppercase text-lg font-bold mt-[10px] underline-offset-4 underline decoration-orange-600 decoration-4">
+          <p className="uppercase sm:text-xs text-lg font-bold mt-[10px] underline-offset-4 underline decoration-orange-600 decoration-4">
             FAST DELIVERY
           </p>
           <p className="uppercase m-2 text-xs font-normal mb-[20px]">
@@ -20,7 +20,7 @@ const Special = () => {
         </div>
         <div className="p-7 text-center">
           <FastfoodIcon className="text-7xl" />
-          <p className="uppercase text-lg font-bold mt-[10px] underline-offset-4 underline decoration-orange-600 decoration-4">
+          <p className="uppercase sm:text-xs text-lg font-bold mt-[10px] underline-offset-4 underline decoration-orange-600 decoration-4">
             FRESH FOOD
           </p>
           <p className="uppercase m-2 text-xs font-normal mb-[20px]">
@@ -30,7 +30,7 @@ const Special = () => {
         </div>
         <div className="p-7 text-center">
           <RestaurantMenuIcon className="text-7xl" />
-          <p className="uppercase text-lg font-bold mt-[10px] underline-offset-4 underline decoration-orange-600 decoration-4">
+          <p className="uppercase sm:text-xs text-lg font-bold mt-[10px] underline-offset-4 underline decoration-orange-600 decoration-4">
             A VARIETY OF DISHES
           </p>
           <p className="uppercase m-2 text-xs font-normal mb-[20px]">
@@ -40,7 +40,7 @@ const Special = () => {
         </div>
         <div className="p-7 text-center">
           <PersonIcon className="text-7xl" />
-          <p className="uppercase text-lg font-bold mt-[10px] underline-offset-4 underline decoration-orange-600 decoration-4">
+          <p className="uppercase sm:text-xs text-lg font-bold mt-[10px] underline-offset-4 underline decoration-orange-600 decoration-4">
             EXPERIENCED CHEFS
           </p>
           <p className="uppercase m-2 text-xs font-normal mb-[20px]">

@@ -6,7 +6,7 @@ const Categories = () => {
       <h1 className="text-center sm:text-xl md:text-2xl font-bold my-3 uppercase ">
         Deal Of The Day
       </h1>
-      <div className="flex md:flex-row sm:flex-col">
+      <div className="lg:grid-rows-3 md:grid-rows-2  sm:grid-rows-1 md:flex justify-center sm:px-10 items-center md:gap-5">
         <div className="p-5 text-center ">
           <img
             className="hover:shadow-lg hover:scale-[1.01]"

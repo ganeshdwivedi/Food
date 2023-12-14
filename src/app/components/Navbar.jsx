@@ -16,7 +16,7 @@ function Nav({ className }) {
     <>
       <nav className="">
         <div
-          className={`${className} flex flex-row md:justify-around z-50 bg-transparent p-5 absolute w-[100%]`}
+          className={`flex backdrop-blur-sm px-10 sm:fixed flex-row md:justify-around sm:justify-between z-50 bg-transparent p-5 absolute w-[100%]`}
         >
           <div className="self-center ">
             <Link href={"/"}>
@@ -26,7 +26,7 @@ function Nav({ className }) {
               />
             </Link>
           </div>
-          <div className={`Navigation-menu  md:mt-[3.5vh]`}>
+          <div className={`md:block sm:hidden md:mt-[3.5vh]`}>
             <ul className={`flex-row flex font-medium gap-4 text-base`}>
               <li className="">
                 <Link
@@ -88,7 +88,7 @@ function Nav({ className }) {
           <div className="flex flex-row gap-5  items-center ld:order-1 sm:order-none md:order-1">
             <div className="w-6">
               <Link href={"/cart"}>
-                <p className="text-black bg-slate-200 rounded-3xl absolute font-extrabold  px-2 sm:top-[7%] md:top-[15%] text-sm">
+                <p className="text-black bg-slate-200 rounded-3xl absolute font-extrabold px-2 sm:top-[20%] md:top-[20%] text-sm">
                   0
                 </p>
                 <ShoppingCartIcon className="text-black" fontSize="medium" />
@@ -100,13 +100,77 @@ function Nav({ className }) {
                 <AccountCircleIcon className="text-black" fontSize="medium" />
               </Link>
             </div>
-            {/* <div>
+            <div>
               <button onClick={Toggle} className="text-black Hamburger px-2 ">
                 {toggle ? "X" : "Menu"}
               </button>
-            </div> */}
+            </div>
           </div>
         </div>
+        {toggle ? (
+          <div
+            className={`md:hidden fixed w-[100vw] h-[100vh] z-40 px-[10vw] bg-white sm:block sm:pt-[30vh]`}
+          >
+            <ul className={`flex-col flex font-medium gap-4 text-base`}>
+              <li className="">
+                <Link
+                  className={`link ${
+                    pathname === "/" ? "text-red-900" : ""
+                  } hover:text-red-900`}
+                  href="/"
+                >
+                  Home
+                </Link>
+              </li>
+
+              <li className="">
+                <Link
+                  className={`link ${
+                    pathname === "/menu" ? "text-red-800" : ""
+                  } hover:text-red-800`}
+                  href="/menu"
+                >
+                  Menu
+                </Link>
+              </li>
+              <li className="">
+                <Link
+                  className={`link ${
+                    pathname === "/about" ? "text-red-800" : ""
+                  } hover:text-red-800`}
+                  href="/about"
+                >
+                  About
+                </Link>
+              </li>
+              <li className="">
+                <Link
+                  className={`link ${
+                    pathname === "/contact" ? "text-red-800" : ""
+                  } hover:text-red-800`}
+                  href="/contact"
+                >
+                  Contact
+                </Link>
+              </li>
+              <li className="">
+                {pathname == "/dashboard/admin" ||
+                pathname == "/dashboard/admin/addProduct" ? (
+                  <Link
+                    className={`link ${
+                      pathname === "/dashboard/admin" ? "text-red-800" : ""
+                    } hover:text-red-800`}
+                    href="/dashboard/admin"
+                  >
+                    Admin
+                  </Link>
+                ) : null}
+              </li>
+            </ul>
+          </div>
+        ) : (
+          ""
+        )}
       </nav>
     </>
   );
