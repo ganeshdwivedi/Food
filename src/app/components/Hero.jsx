@@ -13,7 +13,7 @@ const Hero = () => {
           src="https://img.freepik.com/premium-photo/burger-falls-from-vegetables-additives-spill-out-it_161299-799.jpg?w=360"
         />
       </div>
-      <div className="absolute md:backdrop-blur-0 sm:backdrop-blur-sm text-left sm:w-[60%] w-[40%] left-[7vw] sm:top-[25vh] md:top-[18vw]">
+      <div className="absolute md:backdrop-blur-0 sm:backdrop-blur-sm text-left sm:w-[60%] md:w-[30%] left-[7vw] sm:top-[25vh] md:top-[18vw]">
         <h1 className="md:text-5xl text-slate-900 sm:text-2xl font-bold text-left">
           Perfect <span className="text-red-800">burgers</span>, perfect date
         </h1>

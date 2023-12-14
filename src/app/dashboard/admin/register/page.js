@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 
-export default function Register() {
+export default function page() {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [picture, setPicture] = useState("");
-
+  const isAdmin = true;
   const handleSubmit = async () => {
     try {
       if (name != "" && password != "" && email != "") {
@@ -20,9 +20,10 @@ export default function Register() {
           password,
           name,
           picture,
+          isAdmin,
         });
         console.log(response.data);
-        router.push("/account/Login");
+        router.push("/dashboard/admin/login");
         toast.success("Registeration successfull.");
       } else {
         toast.error("Please enter all required fields");

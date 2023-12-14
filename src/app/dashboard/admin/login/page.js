@@ -1,13 +1,13 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { UserLogin } from "../redux/authSlice";
+import { UserLogin } from "../../../redux/authSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 
-function Login() {
+function page() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -21,9 +21,11 @@ function Login() {
           email,
           password,
         });
-
         dispatch(UserLogin(response.data));
-        router.push("/menu");
+        console.log(response.data.isAdmin);
+        response.data.isAdmin
+          ? router.push("/dashboard/admin/products")
+          : router.push("/menu");
       } else {
         toast.error("please enter your email and password");
       }
@@ -38,7 +40,7 @@ function Login() {
         <div className='md:w-[99.5vw] sm:w-[100vw] bg-cover bg-center bg-[url("https://img.freepik.com/premium-photo/beautiful-abstract-gold-blue-transparent-floral-design-background-banner-copy-space-minimalism_878783-7097.jpg?w=996")] pt-20  font-[FFDINforPumaW07-Regular-latin] relative  '>
           <div className="m-36 sm:m-2 ">
             <h1 className="text-4xl sm:pt-2 font-extrabold text-left lg:pl-20 pb-5 ">
-              My Account
+              Admin Login
             </h1>
             <div className="mb-[-15px] p-10 flex justify-center">
               <form
@@ -110,4 +112,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default page;

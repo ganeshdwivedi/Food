@@ -1,14 +1,24 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Link from "next/link";
+import { addtocart } from "../redux/cartSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 const page = () => {
+  const dispatch = useDispatch();
   const [product, setProduct] = useState([]);
 
   const getProduct = async () => {
     const response = await axios.get("/api/product/all");
     setProduct(response.data.products);
+  };
+  const handleCart = (item) => {
+    dispatch(addtocart(item));
+    toast("your product is added to cart", {
+      icon: "👏",
+    });
   };
   console.log(product);
   useEffect(() => {
@@ -18,18 +28,29 @@ const page = () => {
   const GetAllProducts = product.map((item) => {
     slug = item.title.replace(/\s/g, "-");
     return (
-      <Link key={item._id} href={`/menu/${slug}`}>
-        <div className="md:w-[25vw] text-center sm:w-[49vw] h-[full] md:my-8 sm:my-2 rounded-[25px] md:p-4 sm:p-2 overflow-hidden">
+      <div
+        key={item._id}
+        className="md:w-[25vw] text-center sm:w-[49vw] h-[full] md:my-8 sm:my-2 rounded-[25px] md:p-4 sm:p-2 overflow-hidden"
+      >
+        <Link href={`/menu/${slug}`}>
           <img
             className=" hover:scale-[1.03] hover:transition-all hover:delay-[120ms] md:w-full md:h-[40vh] sm:h-[25vh] sm:w-full "
             src={item.thumbnail}
           />
           <div className="mt-2">
             <p className="font-medium text-3xl text-slate-800">{item.title}</p>
-            <h4 className="font-bold text-2xl text-red-800">$ {item.price}</h4>
+            <h4 className="font-bold text-2xl text-red-800">₹ {item.price}</h4>
           </div>
-        </div>
-      </Link>
+        </Link>
+        <button
+          onClick={() => {
+            handleCart(item);
+          }}
+          className="px-4 py-2 bg-red-800 text-white rounded-[25px]"
+        >
+          Add to Cart
+        </button>
+      </div>
     );
   });
   return (
@@ -39,6 +60,7 @@ const page = () => {
           {GetAllProducts}
         </div>
       }
+      <Toaster />
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import React from "react";
-import AdminNav from "../components/AdminNavbar";
+import Nav from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const layout = ({ children }) => {
   return (
     <div>
-      <AdminNav />
+      <Nav className={"bg-white"} />
       <main> {children}</main>
       <Footer />
     </div>

@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { UserLogout } from "../redux/authSlice";
 import toast, { Toaster } from "react-hot-toast";
 
-function Nav() {
+function AdminNav() {
   const dispatch = useDispatch();
   const IsLogedIn = useSelector((state) => state.auth.isLogedIn);
   const item = useSelector((item) => item.cart);
@@ -63,6 +63,18 @@ function Nav() {
               <li className="">
                 <Link
                   className={`link ${
+                    pathname === "/dahsboard/admin/products"
+                      ? "text-red-800"
+                      : ""
+                  } hover:text-red-800`}
+                  href="/dahsboard/admin/products"
+                >
+                  Products
+                </Link>
+              </li>
+              <li className="">
+                <Link
+                  className={`link ${
                     pathname === "/about" ? "text-red-800" : ""
                   } hover:text-red-800`}
                   href="/about"
@@ -84,22 +96,20 @@ function Nav() {
           </div>
 
           <div className="flex flex-row gap-5  items-center ld:order-1 sm:order-none md:order-1">
-            <div className="w-6">
-              <Link href={"/cart"}>
-                <p className="text-black bg-slate-200 rounded-3xl absolute font-extrabold px-2 sm:top-[20%] md:top-[20%] text-sm">
-                  {item.length}
-                </p>
-                <ShoppingCartIcon className="text-black" fontSize="medium" />
-              </Link>
-            </div>
-
             <div className="md:block sm:hidden">
               <Link href={"/account/Login"}>
                 <AccountCircleIcon className="text-black" fontSize="medium" />
               </Link>
             </div>
             <div className="sm:block md:hidden">
-              <button onClick={Toggle} className="text-black Hamburger px-2 ">
+              <button
+                onClick={Toggle}
+                className={
+                  toggle
+                    ? "text-white border-2 border-white Hamburger px-2 py-2"
+                    : "text-black border-2 border-black Hamburger px-2 py-2"
+                }
+              >
                 {toggle ? "X" : "Menu"}
               </button>
             </div>
@@ -107,8 +117,9 @@ function Nav() {
         </div>
         {toggle ? (
           <div
-            className={`md:hidden fixed w-[100vw] h-[100vh] z-40 px-[10vw] bg-white sm:block sm:pt-[30vh]`}
+            className={`md:hidden fixed w-[100vw] h-[100vh] z-40 px-[10vw] bg-black text-white sm:block sm:pt-[30vh]`}
           >
+            <p className="text-3xl mb-20">Admin Dashboard</p>
             <ul className={`flex-col flex font-medium gap-4 text-base`}>
               <li className="text-lg">
                 <Link
@@ -120,7 +131,18 @@ function Nav() {
                   Home
                 </Link>
               </li>
-
+              <li className="text-lg">
+                <Link
+                  className={`link ${
+                    pathname === "/dahsboard/admin/products"
+                      ? "text-red-800"
+                      : ""
+                  } hover:text-red-800`}
+                  href="/dashboard/admin/products"
+                >
+                  Products
+                </Link>
+              </li>
               <li className="text-lg">
                 <Link
                   className={`link ${
@@ -155,7 +177,7 @@ function Nav() {
                 <li className="text-lg">
                   <button
                     onClick={handleLogout}
-                    className="border-2 border-black px-4 py-2"
+                    className="border-2 border-white px-4 py-2"
                   >
                     Logout
                   </button>
@@ -163,7 +185,7 @@ function Nav() {
               ) : (
                 <li className="text-lg">
                   <Link
-                    className="border-2 border-black px-4 py-2"
+                    className="border-2 border-white px-4 py-2"
                     href="/account/Login"
                   >
                     Login
@@ -181,4 +203,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default AdminNav;

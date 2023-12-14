@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const page = ({ params }) => {
+  const IsAdmin = useSelector((state) => state.auth.user.admin);
   const router = useRouter();
   const [product, setProduct] = useState([]);
   const slug = params.slug.replace(/-/g, " ");
@@ -26,29 +28,41 @@ const page = ({ params }) => {
       console.log(error, "error while deleting product");
     }
   };
-
+  console.log(IsAdmin);
   return (
-    <div className="pt-36 flex flex-row gap-20 items-center">
-      <img className="w-[20vw]" src={product.thumbnail} alt={product.title} />
-      <div>
-        <p className="text-red-900 font-semibold">Title</p>
-        <h3 className="font-bold">{product.title}</h3>
-      </div>
-      <div>
-        <p className="text-red-900 font-semibold">Description</p>
-        <h3 className="font-bold">{product.description}</h3>
-      </div>
-      <div>
-        <p className="text-red-900 font-semibold">Category</p>
-        <h3 className="font-bold">{product.category}</h3>
-      </div>
-      <div>
-        <p className="text-red-900 font-semibold">Price</p>
-        <h3 className="font-bold">{product.price}</h3>
-      </div>
-      <button className="px-4 py-2 bg-green-400" onClick={handleDelete}>
-        Delete
-      </button>
+    <div>
+      {IsAdmin ? (
+        <div className="pt-36 md:grid md:grid-cols-6 flex flex-col gap-3 px-20 justify-center items-left">
+          <img
+            className="w-[50vw]"
+            src={product.thumbnail}
+            alt={product.title}
+          />
+          <div className="sm:p-1 md:p-5">
+            <p className="text-red-900 font-semibold">Title</p>
+            <h3 className="font-bold">{product.title}</h3>
+          </div>
+          <div className="sm:p-1 md:p-5">
+            <p className="text-red-900 font-semibold">Description</p>
+            <h3 className="font-bold">{product.description}</h3>
+          </div>
+          <div className="sm:p-1 md:p-5">
+            <p className="text-red-900 font-semibold">Category</p>
+            <h3 className="font-bold">{product.category}</h3>
+          </div>
+          <div className="sm:p-1 md:p-5">
+            <p className="text-red-900 font-semibold">Price</p>
+            <h3 className="font-bold">{product.price}</h3>
+          </div>
+          <div className="sm:p-1 md:p-5">
+            <button className="px-4 py-2 bg-green-400" onClick={handleDelete}>
+              Delete
+            </button>
+          </div>
+        </div>
+      ) : (
+        <h1>If you are admin Please Login</h1>
+      )}
     </div>
   );
 };
